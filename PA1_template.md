@@ -43,32 +43,13 @@ First group the dataset by date, and calculate sum of each group. Use hist() fun
 
 ```r
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 datagroup_date <- group_by(data, date)
 steps_per_day <- summarize(datagroup_date, totalstep = sum(steps, na.rm = TRUE))
 hist(steps_per_day$totalstep, breaks = 10)
 ```
 
-![](PA1_template_files/figure-html/meanperday-1.png)<!-- -->
+![plot of chunk meanperday](figure/meanperday-1.png)
 
 ```r
 #calculate mean and median of total number of steps per day.
@@ -93,7 +74,7 @@ library(ggplot2)
 ggplot(steps_per_int, aes(x = interval, y = avestep)) + geom_line()
 ```
 
-![](PA1_template_files/figure-html/aveint-1.png)<!-- -->
+![plot of chunk aveint](figure/aveint-1.png)
 
 ```r
 #Calculate the max of average steps per interval, and find out which interval
@@ -132,7 +113,7 @@ steps_per_day_new <- summarize(datagroup_date_new, totalstep = sum(steps, na.rm 
 hist(steps_per_day_new$totalstep, breaks = 10)
 ```
 
-![](PA1_template_files/figure-html/imputing-1.png)<!-- -->
+![plot of chunk imputing](figure/imputing-1.png)
 
 ```r
 #calculate NEW mean and mediam of new total number of steps per day.
@@ -178,7 +159,7 @@ library(ggplot2)
 ggplot(steps_per_int_date, aes(x = interval, y = avestep)) + geom_line() + facet_grid(datefactor ~ .)
 ```
 
-![](PA1_template_files/figure-html/week-1.png)<!-- -->
+![plot of chunk week](figure/week-1.png)
 
 
 There are great difference between daily patterns of weekdays and weekends. In weekdays, people tend to wake up earlier and have a period of high stpes in the morning, followed by a moderate steps taken until going to bed. In weekends, people tend to wake up later and have a averagely higher steps than weekdays throughout all intervals. Also, after 20:00, people seems still actively walking, whereas in weekdays, people seems have very less steps taken after 20:00.
